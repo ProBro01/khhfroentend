@@ -26,7 +26,7 @@ function Header() {
   const theme = createTheme({
 
     palette: {
-      
+
       neutral: {
         main: '#fff',
         contrastText: '#fff',
@@ -40,22 +40,21 @@ function Header() {
     'Gahrwali',
     'kumaoni'
   ];
-  
+
   useEffect(async () => {
     console.log(crop)
     console.log(language)
-    if(crop !== ''){
+    if (crop !== '') {
       console.log(crop)
       var resp = await fetch("http://192.168.113.14:4000/crop/filter", {
-        method : 'post',
-        headers : {
-          'Content-Type' : 'application/json'
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json'
         },
-        body : JSON.stringify({district: district, crop: "", language: language })
+        body: JSON.stringify({ district: district, crop: "", language: language })
       })
-      .then(response => response.json())
-      .then(json => json)
-      console.log("hellsdfasdf")
+        .then(response => response.json())
+        .then(json => json)
       dispatch(setcrop(resp))
     }
   }, [language])
@@ -72,8 +71,9 @@ function Header() {
     })
       .then(response => response.json())
       .then(json => json)
-    console.log(recivedinnerhtml)
-    dispatch(innerhtmlsetter(JSON.parse(recivedinnerhtml.innerhtmldata)))
+    if (recivedinnerhtml !== null) {
+      dispatch(innerhtmlsetter(JSON.parse(recivedinnerhtml.innerhtmldata)))
+    }
   };
 
   return (
