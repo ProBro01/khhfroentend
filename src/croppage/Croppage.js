@@ -4,18 +4,21 @@ import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 // action
 import { currentcropsetter } from  "../actions/currentcropaction.js"
+// hooks
+import { useHistory } from 'react-router-dom'
 
 export const Croppage = () => {
 
+    const history = useHistory()
     const dispatch = useDispatch()
     const crop = useSelector(state => state.cropreducer)
     const currentcrop = useSelector(state => state.currentcropreducer)
 
     function setSpecificCrop(event) {
-        console.log(event.target)
         var croptobesetted = crop[event.target.getAttribute("cropindex")]
         console.log(croptobesetted)
         dispatch(currentcropsetter(croptobesetted))
+        history.push("/specifedcrop")
     }
 
     return (

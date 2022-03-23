@@ -5,6 +5,6 @@ export const Specifiedcrop = () => {
 
     const currentcrop = useSelector(state => state.currentcropreducer)
   return (
-    <div>{currentcrop.cropName}</div>
+    <div>{currentcrop.description}</div>
   )
 }
