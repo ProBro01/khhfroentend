@@ -3,6 +3,8 @@ import './App.css';
 import Header from './Header/Header';
 import HomePage from './home_page/HomePage.js';
 import DistrictPage from './DistrictSearch/DistrictPage.js';
+import { Croppage } from "./croppage/Croppage.js"
+// dependencies
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import store from "./store.js";
 import { Provider } from "react-redux"
@@ -21,6 +23,9 @@ function App() {
             </Route>
             <Route exact path="/">
               <HomePage />
+            </Route>
+            <Route path="/crop">
+              <Croppage />
             </Route>
           </Switch>
         </Router>

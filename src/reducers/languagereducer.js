@@ -1,4 +1,4 @@
-const initalstate = "english"
+const initalstate = ""
 export const languagereducer = (state = initalstate, action) => {
     switch (action.type){
         case "ENGLISH" : return "english"
