@@ -8,11 +8,14 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { getStyles } from "../home_page/HomePage.js"
 // hooks
+import { Link } from "react-router-dom"
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux"
 // actions
 import { languageaction, innerhtmlsetter } from "../actions/languageaction.js"
 import { setcrop } from '../actions/cropsaction.js';
+import { currentcropsetter } from "../actions/currentcropaction.js"
+import { cropnotfoundfalse, cropnotfoundtrue } from '../actions/cropnotfoundaction';
 
 
 function Header() {
@@ -20,6 +23,7 @@ function Header() {
   const language = useSelector(state => state.languagereducer)
   const innerhtml = useSelector(state => state.innerhtmlcontroller)
   const district = useSelector(state => state.districtreducer)
+  const currentcrop = useSelector(state => state.currentcropreducer)
   const crop = useSelector(state => state.cropreducer)
   const dispatch = useDispatch()
 
@@ -42,10 +46,7 @@ function Header() {
   ];
 
   useEffect(async () => {
-    console.log(crop)
-    console.log(language)
     if (crop !== '') {
-      console.log(crop)
       var resp = await fetch("http://192.168.113.14:4000/crop/filter", {
         method: 'post',
         headers: {
@@ -56,6 +57,25 @@ function Header() {
         .then(response => response.json())
         .then(json => json)
       dispatch(setcrop(resp))
+    }
+    if (currentcrop !== "") {
+      console.log(currentcrop)
+      var resp = await fetch("http://192.168.113.14:4000/crop/filtercropid", {
+        method: "post",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ language: language, crop_id: currentcrop.crop_id })
+      })
+        .then(response => response.json())
+        .then(json => json)
+      if (resp !== null) {
+        dispatch(currentcropsetter(resp))
+        dispatch(cropnotfoundfalse())
+      }
+      else {
+        dispatch(cropnotfoundtrue())
+      }
     }
   }, [language])
 
@@ -105,21 +125,31 @@ function Header() {
           </FormControl>
         </div>
         <ThemeProvider theme={theme}>
-          <Button variant='outlined' color="neutral" className='header_Button'>Register</Button>
-          <Button variant='outlined' color="neutral" className='header_Button'>Log in</Button>
+          <Button variant='outlined' color="neutral" className='header_Button'>{innerhtml.register}</Button>
+          <Button variant='outlined' color="neutral" className='header_Button'>{innerhtml.login}</Button>
         </ThemeProvider>
 
       </div>
       <div className='Homepage_lower_header'>
         <div className='Homepage_lower_header_sub_1'>
-          <div className='Homepage_lower_header_tab'>{innerhtml === {} ? null : innerhtml.home}</div>
-          <div className='Homepage_lower_header_tab'>{innerhtml === {} ? null : innerhtml.agriculture}</div>
+          <Link to={"/"}>
+            <div className='Homepage_lower_header_tab'>{innerhtml === {} ? null : innerhtml.home}</div>
+          </Link>
+          <Link to={"/agriculture"}>
+            <div className='Homepage_lower_header_tab'>{innerhtml === {} ? null : innerhtml.agriculture}</div>
+          </Link>
+          <Link to="/animalhusbandary">
           <div className='Homepage_lower_header_tab'>{innerhtml === {} ? null : innerhtml.animalhusbandary}</div>
-          <div className='Homepage_lower_header_tab'>{innerhtml === {} ? null : innerhtml.organic}</div>
+          </Link>
+          <Link to="/governmentschemes">
           <div className='Homepage_lower_header_tab'>{innerhtml === {} ? null : innerhtml.governmentschemes}</div>
-          <div className='Homepage_lower_header_tab'>{innerhtml === {} ? null : innerhtml.expert}</div>
-          <div className='Homepage_lower_header_tab'>{innerhtml === {} ? null : innerhtml.partnerwithus}</div>
+          </Link>
+          <Link to="/kissancreditcard">
+          <div className='Homepage_lower_header_tab'>{innerhtml === {} ? null : innerhtml.kisancreditcard}</div>
+          </Link>
+          <Link to="/blog">
           <div className='Homepage_lower_header_tab'>{innerhtml === {} ? null : innerhtml.blog}</div>
+          </Link>
         </div>
 
       </div>

@@ -14,6 +14,7 @@ import { useHistory } from "react-router-dom"
 // actions
 import { setcrop } from '../actions/cropsaction';
 import { districtaction } from '../actions/districtaction';
+import { innerhtmlsetter } from "../actions/languageaction.js"
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -134,8 +135,27 @@ function HomePage() {
       history.push("/crop")
     }
   }
+  
+  async function getfirstinnerhtml(){
+    console.log(innerhtml)
+    if(Object.keys(innerhtml).length === 0){
+      var recivedinnerhtml = await fetch("http://192.168.113.14:4000/getinnerhtmldata", {
+        method : "post",
+        headers : {
+          "Content-Type" : "application/json",
+        },
+        body : JSON.stringify({language : "English"})
+      })
+      .then(response => response.json())
+      .then(json => json)
+      dispatch(innerhtmlsetter(JSON.parse(recivedinnerhtml.innerhtmldata)))
+    }
+  }
+
   return (
-    <div>
+    <div onLoad={() => {
+      getfirstinnerhtml()
+    }}>
 
       <div className='HomepageBackgroundImage'>
 

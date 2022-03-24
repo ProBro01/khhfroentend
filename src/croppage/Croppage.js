@@ -16,7 +16,6 @@ export const Croppage = () => {
 
     function setSpecificCrop(event) {
         var croptobesetted = crop[event.target.getAttribute("cropindex")]
-        console.log(croptobesetted)
         dispatch(currentcropsetter(croptobesetted))
         history.push("/specifedcrop")
     }
