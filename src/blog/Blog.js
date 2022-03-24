@@ -1,3 +1,5 @@
+import userpicture from "../images/user-picture.png"
+// dependencies
 import React from 'react'
 // hooks
 import { useState } from 'react'
@@ -20,7 +22,6 @@ export const Blog = () => {
             dispatch(blogappender(resp))
             setblogpagenumber(blogpagenumber + 1)
         }
-        console.log(resp)
     }
 
 console.log(blogs)
@@ -31,7 +32,7 @@ console.log(blogs)
         {showblogs ? blogs.map((element, index) => (
                 <div>
                     <div>
-                        <img src={`http://192.168.113.14:4000/image/getimage/user/${element.blog_owner_image}`} />
+                        {element.blog_owner_image !== undefined ? <img src={`http://192.168.113.14:4000/image/getimage/user/${element.blog_owner_image}`} /> : <img src={userpicture} />}
                         <h6>{element.blog_owner_name}</h6>
                         <h6>{element.submissiondate}</h6>
                     </div>
