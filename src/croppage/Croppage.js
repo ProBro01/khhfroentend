@@ -28,7 +28,7 @@ export const Croppage = () => {
                         setSpecificCrop(event)
                     }
                 }>
-                    <img src={`http://192.168.113.14:4000/image/getimage/crop/${element.banner_image}`} cropindex={index} />
+                    <img src={`http://192.168.185.14:4000/image/getimage/crop/${element.banner_image}`} cropindex={index} />
                     <p>{element.cropName}</p>
                     <p>{element.typeofcrop}</p>
                 </div>

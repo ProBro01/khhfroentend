@@ -59,7 +59,7 @@ const Districtnames = {
     'उधम सिंह नगर',
     'उत्तरकाशी'
   ],
-  'gahrwali': [
+  'garhwali': [
     'अल्मोड़ा',
     'बागेश्वर',
     'चमोली',
@@ -122,7 +122,7 @@ function HomePage() {
   async function getCrops() {
     if (district !== "") {
       dispatch(districtaction(district))
-      var resp = await fetch("http://192.168.113.14:4000/crop/filter", {
+      var resp = await fetch("http://192.168.185.14:4000/crop/filter", {
         method: "post",
         headers: {
           "Content-Type": "application/json"
@@ -137,9 +137,8 @@ function HomePage() {
   }
   
   async function getfirstinnerhtml(){
-    console.log(innerhtml)
     if(Object.keys(innerhtml).length === 0){
-      var recivedinnerhtml = await fetch("http://192.168.113.14:4000/getinnerhtmldata", {
+      var recivedinnerhtml = await fetch("http://192.168.185.14:4000/getinnerhtmldata", {
         method : "post",
         headers : {
           "Content-Type" : "application/json",

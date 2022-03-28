@@ -1,15 +1,19 @@
 import "./home_page/HomePage.js"
 import './App.css';
+import { Employment } from "./empolyment/Employment.js";
 import Header from './Header/Header';
 import HomePage from './home_page/HomePage.js';
 import DistrictPage from './DistrictSearch/DistrictPage.js';
 import { Croppage } from "./croppage/Croppage.js"
-import { Agriculturepage } from "./agriculturepage.js/Agriculturepage.js";
+import { Seachbycrop } from "./searchbycropname/Seachbycrop.js";
 import { Animalhusbandary } from "./animalhusbandary/Animalhusbandary.js"
 import { Specifiedcrop } from "./specifedcrop/Specifiedcrop.js";
 import { Governmentschems } from "./governmentschemes/governmentschems.js";
 import { Kissancreditcard } from "./kissancreditcard/Kissancreditcard.js";
+import Register from "./register/Register.js";
+import Login from "./login/Login.js"
 import { Blog } from "./blog/Blog.js";
+import { Fertilizercal } from "./fertilizercal/fertilizercal.js";
 // dependencies
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import store from "./store.js";
@@ -27,8 +31,8 @@ function App() {
             <Route exact path="/">
               <HomePage />
             </Route>
-            <Route path="/agriculture">
-              <Agriculturepage />
+            <Route path="/searchbycrop">
+              <Seachbycrop />
             </Route>
             <Router path="/animalhusbandary">
               <Animalhusbandary />
@@ -47,6 +51,15 @@ function App() {
             </Route>
             <Router path="/blog">
               <Blog />
+            </Router>
+            <Router path="/register">
+              <Register/>
+            </Router>
+            <Router path="/login">
+              <Employment />
+            </Router>
+            <Router path="/fertilizercalculator">
+              <Fertilizercal />
             </Router>
           </Switch>
         </Router>

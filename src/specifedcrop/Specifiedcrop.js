@@ -7,11 +7,12 @@ export const Specifiedcrop = () => {
     const innerhtml = useSelector(state => state.innerhtmlcontroller)
     const cropnotfound = useSelector(state => state.setcropnotfound)
     const currentcrop = useSelector(state => state.currentcropreducer)
+    console.log(currentcrop)
     console.log(cropnotfound)
     var t = !cropnotfound ?
             <div>
                 <div>
-                    <img src={`http://192.168.113.14:4000/image/getimage/crop/${currentcrop.banner_image}`} />
+                    <img src={`http://192.168.185.14:4000/image/getimage/crop/${currentcrop.banner_image}`} />
                     <h1>{currentcrop.cropName}</h1>
                 </div>
                 <div>
@@ -108,7 +109,7 @@ export const Specifiedcrop = () => {
                 {currentcrop.harvesting.length !== 0 ? <div>
                     <h1>{innerhtml.harversting}</h1>
                     {
-                        currentcrop.harversting.map((element, index) => {
+                        currentcrop.harvesting.map((element, index) => {
                             return <li key={index}>{element}</li>
                         })
                     }

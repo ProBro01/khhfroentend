@@ -3,7 +3,7 @@ export const languagereducer = (state = initalstate, action) => {
     switch (action.type){
         case "ENGLISH" : return "english"
         case "HINDI" : return "hindi"
-        case "GAHRWALI" : return "gahrwali"
+        case "GARHWALI" : return "garhwali"
         case "KUMAONI" : return "kumaoni"
         default : return state
     }

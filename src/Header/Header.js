@@ -41,13 +41,13 @@ function Header() {
   const languages = [
     'English',
     'Hindi',
-    'Gahrwali',
+    'Garhwali',
     'kumaoni'
   ];
 
   useEffect(async () => {
     if (crop !== '') {
-      var resp = await fetch("http://192.168.113.14:4000/crop/filter", {
+      var resp = await fetch("http://192.168.185.14:4000/crop/filter", {
         method: 'post',
         headers: {
           'Content-Type': 'application/json'
@@ -59,8 +59,7 @@ function Header() {
       dispatch(setcrop(resp))
     }
     if (currentcrop !== "") {
-      console.log(currentcrop)
-      var resp = await fetch("http://192.168.113.14:4000/crop/filtercropid", {
+      var resp = await fetch("http://192.168.185.14:4000/crop/filtercropid", {
         method: "post",
         headers: {
           'Content-Type': 'application/json'
@@ -69,6 +68,7 @@ function Header() {
       })
         .then(response => response.json())
         .then(json => json)
+    console.log(resp)
       if (resp !== null) {
         dispatch(currentcropsetter(resp))
         dispatch(cropnotfoundfalse())
@@ -80,9 +80,11 @@ function Header() {
   }, [language])
 
   const handleChange = async (event) => {
+    
     var eveval = event.target.value
+    console.log(eveval)
     dispatch(languageaction(eveval.toUpperCase()));
-    var recivedinnerhtml = await fetch("http://192.168.113.14:4000/getinnerhtmldata", {
+    var recivedinnerhtml = await fetch("http://192.168.185.14:4000/getinnerhtmldata", {
       method: "post",
       headers: {
         "Content-Type": "application/json"
@@ -91,6 +93,7 @@ function Header() {
     })
       .then(response => response.json())
       .then(json => json)
+      console.log(recivedinnerhtml)
     if (recivedinnerhtml !== null) {
       dispatch(innerhtmlsetter(JSON.parse(recivedinnerhtml.innerhtmldata)))
     }
@@ -135,7 +138,7 @@ function Header() {
           <Link to={"/"}>
             <div className='Homepage_lower_header_tab'>{innerhtml === {} ? null : innerhtml.home}</div>
           </Link>
-          <Link to={"/agriculture"}>
+          <Link to={"/searchbycrop"}>
             <div className='Homepage_lower_header_tab'>{innerhtml === {} ? null : innerhtml.agriculture}</div>
           </Link>
           <Link to="/animalhusbandary">

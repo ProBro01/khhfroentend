@@ -1,0 +1,69 @@
+.App {
+    text-align: center;
+  }
+  
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
+  }
+  
+   
+  .App-link {
+    color: #61dafb;
+  }
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  
+  .card{
+    border: 2px solid rgb(182, 182, 182);
+    border-radius: 10px;
+    margin: 10px ;
+    padding: 10px;
+    display: flex;
+    width: 900px; 
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #e8eeee;
+  }
+  
+  .image{
+    border: 2px solid rgb(204, 202, 202);
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    margin: 10px;
+    width: 50px;
+    
+  }
+  
+  .image img{
+    /* border: 100%; */
+    border-radius: 100%;
+    height: 50px;
+    width: 50px;
+  }
+  
+  .readmore{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+  }
+  
+  .readmore button {
+    border: 2px solid black;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+  
+  }
